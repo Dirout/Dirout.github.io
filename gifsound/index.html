@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- URL format: website.tld/?[gif/gifv]=(URl/to/GIF/without/protocol.gif)&[yt/sc]=[sound_id] -->
+<head>
+	<link rel="stylesheet" type="text/css" href="assets/styles.css">
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="notifications"></div>
+	</div>
+	
+	<div id="content">
+		<div id="display">
+			<div id="gif-area">
+				<div class="loading display-state">
+					<div class="loading-wrap">
+						<div class="sk-circle">
+							<div class="sk-circle1 sk-child"></div>
+							<div class="sk-circle2 sk-child"></div>
+							<div class="sk-circle3 sk-child"></div>
+							<div class="sk-circle4 sk-child"></div>
+							<div class="sk-circle5 sk-child"></div>
+							<div class="sk-circle6 sk-child"></div>
+							<div class="sk-circle7 sk-child"></div>
+							<div class="sk-circle8 sk-child"></div>
+							<div class="sk-circle9 sk-child"></div>
+							<div class="sk-circle10 sk-child"></div>
+							<div class="sk-circle11 sk-child"></div>
+							<div class="sk-circle12 sk-child"></div>
+						</div>
+						<p>Loading GIF...</p>
+						<!-- Balances vertical positioning -->
+						<div class="sk-circle"></div>
+					</div>
+				</div>
+				<div class="ready display-state">
+					<p>Ready, waiting for sound ...</p>
+				</div>
+				<div class="display display-state">
+					<div id="gif-wrapper">
+						<!-- GIF embeds here -->
+					</div>
+				</div>
+				<div class="error display-state">
+					<p>Something went wrong ...</p>
+				</div>
+			</div>
+			<div id="sound-area">
+				<div class="loading display-state" style="display:none;">
+					<div class="loading-wrap">
+						<div class="sk-circle">
+							<div class="sk-circle1 sk-child"></div>
+							<div class="sk-circle2 sk-child"></div>
+							<div class="sk-circle3 sk-child"></div>
+							<div class="sk-circle4 sk-child"></div>
+							<div class="sk-circle5 sk-child"></div>
+							<div class="sk-circle6 sk-child"></div>
+							<div class="sk-circle7 sk-child"></div>
+							<div class="sk-circle8 sk-child"></div>
+							<div class="sk-circle9 sk-child"></div>
+							<div class="sk-circle10 sk-child"></div>
+							<div class="sk-circle11 sk-child"></div>
+							<div class="sk-circle12 sk-child"></div>
+						</div>
+						<p>Loading sound...</p>
+						<!-- Balances vertical positioning -->
+						<div class="sk-circle"></div>
+					</div>
+				</div>
+				<div class="ready display-state">
+					<p>Ready, waiting for GIF</p>
+				</div>
+				<div class="display display-state" style="display:none;">
+					<div id="sound-cover">
+						<p>Hover to reveal sound</p>
+					</div>
+					<div id="sound-wrapper">
+						<!-- Sound embeds here -->
+					</div>
+				</div>
+				<div class="error display-state">
+					<p>Something went wrong ...</p>
+				</div>
+			</div>
+		</div>
+		<form id="gifsound-input" style="display:none;">
+			<input id="gif-url" type="url" />
+			<input id="sound-url" type="url" />
+			<input id="sound-start-time" type="text" placeholder="2"/>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="assets/scripts.js"></script>
+</body>
+</html>
