@@ -1,0 +1,42 @@
+---
+---
+a {
+	cursor: default;
+	text-decoration: none;
+}
+
+body {
+	font:16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #666;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	line-height: 2;
+}
+
+h1 {
+	font-size: 30px;
+	letter-spacing: -1px;
+	color: #222;
+	font-weight: bold;
+}
+
+h2 {
+	font: normal 17px/1.5em "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #aaa;
+}
+
+p.small {
+  all: unset;
+	color: #bbb;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.footer {
+  display: inline-block;
+}
+
+hr {
+  width: 100%;
+  margin-left: 0;
+}

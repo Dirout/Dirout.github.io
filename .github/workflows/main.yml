@@ -1,0 +1,42 @@
+name: Publish
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: 'MadeByEmil/WDHAN'
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.100
+    - name: Build with dotnet
+      run: |
+        dotnet build --configuration Release
+    - uses: actions/checkout@v2
+      with:
+        path: ./bin/Release/netcoreapp3.1/project
+    - name: Build project
+      run: |
+        cd ./bin/Release/netcoreapp3.1
+        cp -avr ./project/* ./
+        rm -r ./project/
+        ./WDHAN build
+    - name: Output current directory listing
+      run: |
+        cd ./bin/Release/netcoreapp3.1/_site/
+        ls
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_dir: ./bin/Release/netcoreapp3.1/_site/
+        publish_branch: gh-pages  # deploying branch
+        user_name: WDHAN
+        user_email: em@emsa.cf
+        commit_message: "Building WDHAN project"
