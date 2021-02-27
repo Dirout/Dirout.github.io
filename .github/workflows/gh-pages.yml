@@ -40,9 +40,9 @@ jobs:
         args: --manifest-path mokk/grabber/Cargo.toml --release --all-features --target x86_64-unknown-linux-gnu
     - name: Grab GitHub data
       run: |
-        strip -v --strip-all ./grabber/target/x86_64-unknown-linux-gnu/release/grabber
-        chmod +x ./grabber/target/x86_64-unknown-linux-gnu/release/grabber
-        ./grabber/target/x86_64-unknown-linux-gnu/release/grabber .
+        strip -v --strip-all ./mokk/grabber/target/x86_64-unknown-linux-gnu/release/grabber
+        chmod +x ./mokk/grabber/target/x86_64-unknown-linux-gnu/release/grabber
+        ./mokk/grabber/target/x86_64-unknown-linux-gnu/release/grabber ./mokk
     - name: Build
       run: |
           sudo apt-get -qq install tree > /dev/null
