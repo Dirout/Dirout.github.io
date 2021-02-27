@@ -1,0 +1,70 @@
+name: Publish to GitHub Pages
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    name: "Publish"
+
+    steps:
+    - name: Install Dokkoo
+      run: |
+        curl -s https://raw.githubusercontent.com/MadeByEmil/dokkoo/master/Cargo.toml --output Cargo.toml > /dev/null
+        version=$( awk -F ' = ' '$1 ~ /version/ { gsub(/[\"]/, "", $2); printf("%s",$2) }' Cargo.toml )
+        curl -s -L https://github.com/MadeByEmil/dokkoo/releases/download/v${version}/dokkoo_${version}_amd64.deb --output dokkoo_${version}_amd64.deb > /dev/null
+        sudo apt-get -qq install ./dokkoo_${version}_amd64.deb > /dev/null
+        printf "Installed Dokkoo v${version}"
+    - name: Checkout Mokk
+      uses: actions/checkout@v2
+      with:
+          path: ./mokk
+    - name: Checkout GitHub Pages environment
+      uses: actions/checkout@v2
+      with:
+          ref: gh-pages
+          path: ./gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Setup Rust toolchain
+      uses: actions-rs/toolchain@v1
+      with:
+         toolchain: nightly
+         profile: minimal
+         target: x86_64-unknown-linux-gnu
+         override: true
+    - name: Build GitHub grabber
+      uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --manifest-path grabber/Cargo.toml --release --all-features --target x86_64-unknown-linux-gnu
+    - name: Grab GitHub data
+      run: |
+        strip -v --strip-all ./grabber/target/x86_64-unknown-linux-gnu/release/grabber
+        chmod +x ./grabber/target/x86_64-unknown-linux-gnu/release/grabber
+        ./grabber/target/x86_64-unknown-linux-gnu/release/grabber .
+    - name: Build
+      run: |
+          sudo apt-get -qq install tree > /dev/null
+          printf "Files to build:\n" && tree ./mokk
+          find ./gh-pages -mindepth 1 ! -regex '^./gh-pages/.git\(/.*\)?' -delete
+          cd ./mokk
+          printf "\nBuilding … \n" && dokkoo build .
+          cd ../
+          cp -ar ./mokk/output/* ./gh-pages
+          if [ -f "./gh-pages/postbuild.sh" ]; then
+              chmod +x ./gh-pages/postbuild.sh && ./gh-pages/postbuild.sh
+          fi
+          touch ./gh-pages/.nojekyll
+          tee -a ./gh-pages/.nojekyll > /dev/null <<EOT
+
+          EOT
+          printf "\nFiles to publish:\n" && tree ./gh-pages
+    - name: Publish
+      run: |
+          cd ./gh-pages
+          git config --global user.name 'Dokkoo'
+          git config --global user.email 'MadeByEmil@users.noreply.github.com'
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -am "Publish Mokk to GitHub Pages"
+          git push
