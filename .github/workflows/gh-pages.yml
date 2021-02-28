@@ -49,6 +49,7 @@ jobs:
           printf "Files to build:\n" && tree ./mokk
           find ./gh-pages -mindepth 1 ! -regex '^./gh-pages/.git\(/.*\)?' -delete
           printf "\nBuilding … \n" && dokkoo build ./mokk
+          ls ./mokk
           cp -ar ./mokk/output/* ./gh-pages
           if [ -f "./gh-pages/postbuild.sh" ]; then
               chmod +x ./gh-pages/postbuild.sh && ./gh-pages/postbuild.sh
