@@ -25,7 +25,6 @@ struct Repository
     open_issues_count: u32,
     pushed_at: String,
     stargazers_count: u32,
-    stargazers_url: String
 }
 
 #[tokio::main]
@@ -58,7 +57,7 @@ async fn main() {
             match &repository.license
             {
                 Some(license) => {
-                    license_id = license.clone().spdx_id;
+                    license_id = license.clone().spdx_id.to_lowercase();
                     license_name = license.clone().name;
                 }
                 None => {
@@ -102,7 +101,6 @@ async fn main() {
                 open_issues_count: open_issues_count,
                 pushed_at: repository.pushed_at.unwrap().to_rfc3339(),
                 stargazers_count: repository.stargazers_count.unwrap(),
-                stargazers_url: repository.stargazers_url.to_string()
             };
             repositories.push(structured_data);
         }

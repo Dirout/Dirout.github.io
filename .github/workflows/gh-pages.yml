@@ -53,6 +53,7 @@ jobs:
           cd ../
           ls ./mokk
           cp -ar ./mokk/output/* ./gh-pages
+          cp -ar ./mokk/assets ./gh-pages
           if [ -f "./gh-pages/postbuild.sh" ]; then
               chmod +x ./gh-pages/postbuild.sh && ./gh-pages/postbuild.sh
           fi
