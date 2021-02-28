@@ -1,12 +1,12 @@
-.active {
-    cursor: default;
-    text-decoration: none;
-}
-
 a {
     cursor: default;
     text-decoration: none;
     color: rgb(255,59,48);
+}
+
+a:hover {
+    cursor: default;
+    text-decoration: none;
 }
 
 body {
