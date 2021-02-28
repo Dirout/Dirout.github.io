@@ -1,11 +1,11 @@
 ---
 layout: main
-title: "MadeByEmil"
+title: "Dirout"
 permalink: "index.html"
 ---
 
 <div class="card-group">
-{% for repository in collections["pinned"]}
+{% for repository in collections["repos"]}
 <a href="{{ repository.html_url }}">
 {% if repository.archived %}
 <div class="card-header">Header</div>
@@ -35,7 +35,4 @@ permalink: "index.html"
 </div>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
-{% for repository in collections["all"]}
-
-{% endfor %}
 </div>
