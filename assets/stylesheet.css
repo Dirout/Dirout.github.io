@@ -14,8 +14,23 @@ a:hover {
 	max-width: fit-content;
 }
 
+.card-footer {
+    margin-top: 1rem;
+    min-width: max-content;
+    background: #fff;
+}
+
+.card > * {
+	margin-top: 0.5rem;
+	max-width: fit-content;
+}
+
 .card-group > * {
 	min-width: fit-content;
+}
+
+.card {
+	min-width: auto;
 }
 
 body {
