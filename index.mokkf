@@ -3,12 +3,12 @@ layout: main
 title: "Dirout"
 permalink: "index.html"
 ---
-
 <div class="card-group">
 {% for repository in collections["repos"] %}
+<div class="card">
 <a href="{{ repository.document.frontmatter.html_url }}">
 {% if repository.document.frontmatter.archived %}
-<div class="card-header">Header</div>
+<div class="card-header"><span data-octicon="archive"></span> Archived</div>
 {% endif %}
 <div class="card-body">
 {% if repository.document.frontmatter.fork %}
@@ -25,14 +25,14 @@ permalink: "index.html"
 <span data-octicon="issue-opened"></span>Issues <span class="badge bg-secondary">{{ repository.document.frontmatter.open_issues_count }}</span>
 </button>
 {% endif %}
+<div class="card-footer">
 {% if repository.document.frontmatter.has_license %}
 <p class="card-text"><small class="text-muted"><span data-octicon="law"></span><a href="https://choosealicense.com/licenses/{{ repository.document.frontmatter.license_id }}"> {{ repository.document.frontmatter.license_name }}</a></small></p>
 {% endif %}
 <p class="card-text"><small class="text-muted"><span data-octicon="clock"></span> Last updated at {{ repository.document.frontmatter.pushed_at }}</small></p>
 </div>
-</a>
-{% endfor %}
 </div>
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
+</a>
+</div>
+{% endfor %}
 </div>
