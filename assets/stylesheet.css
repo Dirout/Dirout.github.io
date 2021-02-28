@@ -11,6 +11,11 @@ a:hover {
 
 .card-body > * {
 	margin-bottom: 0.5rem;
+	max-width: fit-content;
+}
+
+.card-group > * {
+	min-width: fit-content;
 }
 
 body {
