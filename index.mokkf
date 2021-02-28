@@ -5,30 +5,30 @@ permalink: "index.html"
 ---
 
 <div class="card-group">
-{% for repository in collections["repos"]}
-<a href="{{ repository.html_url }}">
-{% if repository.archived %}
+{% for repository in collections["repos"] %}
+<a href="{{ repository.document.frontmatter.html_url }}">
+{% if repository.document.frontmatter.archived %}
 <div class="card-header">Header</div>
 {% endif %}
 <div class="card-body">
-{% if repository.fork %}
-<h5 class="card-title"><span data-octicon="repo-forked"></span>{{ repository.full_name }}</h5>
+{% if repository.document.frontmatter.fork %}
+<h5 class="card-title"><span data-octicon="repo-forked"></span>{{ repository.document.frontmatter.name }}</h5>
 {% else %}
-<h5 class="card-title"><span data-octicon="repo"></span>{{ repository.full_name }}</h5>
+<h5 class="card-title"><span data-octicon="repo"></span>{{ repository.document.frontmatter.name }}</h5>
 {% endif %}
-<p class="card-text">{{ repository.description }}</p>
-<button type="button" class="btn btn-primary" onclick="window.location.href='{{ repository.stargazers_url }}'">
-<span data-octicon="star"></span>Stars <span class="badge bg-secondary">{{ repository.stargazers_count }}</span>
+<p class="card-text">{{ repository.document.frontmatter.description }}</p>
+<button type="button" class="btn btn-primary" onclick="window.location.href='{{ repository.document.frontmatter.stargazers_url }}'">
+<span data-octicon="star"></span>Stars <span class="badge bg-secondary">{{ repository.document.frontmatter.stargazers_count }}</span>
 </button>
-{% if repository.has_issues %}
-<button type="button" class="btn btn-primary" onclick="window.location.href='{{ repository.issues_url }}'">
-<span data-octicon="issue-opened"></span>Issues <span class="badge bg-secondary">{{ repository.open_issues_count }}</span>
+{% if repository.document.frontmatter.has_issues %}
+<button type="button" class="btn btn-primary" onclick="window.location.href='{{ repository.document.frontmatter.html_url }}/issues'">
+<span data-octicon="issue-opened"></span>Issues <span class="badge bg-secondary">{{ repository.document.frontmatter.open_issues_count }}</span>
 </button>
 {% endif %}
-{% if repository.has_license %}
-<p class="card-text"><small class="text-muted"><span data-octicon="law"></span><a href="https://choosealicense.com/licenses/{{ repository.license_id }}">{{ repository.license_name }}</a></small></p>
+{% if repository.document.frontmatter.has_license %}
+<p class="card-text"><small class="text-muted"><span data-octicon="law"></span><a href="https://choosealicense.com/licenses/{{ repository.document.frontmatter.license_id }}">{{ repository.document.frontmatter.license_name }}</a></small></p>
 {% endif %}
-<p class="card-text"><small class="text-muted"><span data-octicon="clock"></span>Last updated at {{ repository.pushed_at }}</small></p>
+<p class="card-text"><small class="text-muted"><span data-octicon="clock"></span>Last updated at {{ repository.document.frontmatter.pushed_at }}</small></p>
 </div>
 </a>
 {% endfor %}

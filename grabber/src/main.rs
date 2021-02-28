@@ -16,6 +16,7 @@ struct Repository
     archived: bool,
     forked: bool,
     name: String,
+    description: String,
     has_issues: bool,
     has_license: bool,
     html_url: String,
@@ -65,6 +66,17 @@ async fn main() {
                     license_name = String::new();
                 }
             }
+            
+            let description;
+            match repository.description
+            {
+            	Some(gh_description) => {
+            		description = gh_description;
+            	}
+            	None => {
+            		description = String::new();
+            	}
+            }
 
             let open_issues_count;
             match repository.has_issues.unwrap()
@@ -81,6 +93,7 @@ async fn main() {
                 archived: repository.archived.unwrap(),
                 forked: repository.fork,
                 name: repository.name,
+                description: description.to_owned(),
                 has_issues: repository.has_issues.unwrap(),
                 has_license: repository.license.is_some(),
                 html_url: repository.html_url.to_string(),
@@ -98,7 +111,7 @@ async fn main() {
     for i in 0..repositories.len()
     {
         let file_contents = &serde_yaml::to_string(&repositories[i]).unwrap();
-        write_file(format!("./repos/{}.mokkf", i), format!("{}\ncollection: \n\"repos\"\n---", file_contents))
+        write_file(format!("./repos/{}.mokkf", i), format!("{}\ncollection:  \"repos\"\npermalink: \"{{{{ page.name }}}}.html\"\n---", file_contents))
     }
 }
 
