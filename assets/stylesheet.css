@@ -9,6 +9,10 @@ a:hover {
     text-decoration: none;
 }
 
+.card-body > * {
+	margin-bottom: 0.5rem;
+}
+
 body {
     font:16px/1 "Inter", Helvetica, Arial, sans-serif;
     color: #666;
