@@ -98,9 +98,7 @@ async fn main() {
     for i in 0..repositories.len()
     {
         let file_contents = &serde_yaml::to_string(&repositories[i]).unwrap();
-        println!("===\n./gh-data/{}.mokkf\n===", i);
-        println!("\n{}\n---\n\n", file_contents);
-        //write_file(format!("./repositories/{}.mokkf", i), format!("{}\n---", file_contents))
+        write_file(format!("./repos/{}.mokkf", i), format!("{}\ncollection: \n\"repos\"\n---", file_contents))
     }
 }
 
