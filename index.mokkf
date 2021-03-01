@@ -24,11 +24,9 @@ permalink: "index.html"
 <span data-octicon="star"></span>Stars <span class="badge bg-secondary">{{ repository.document.frontmatter.stargazers_count }}</span>
 </button>
 {% if repository.document.frontmatter.has_issues %}
-<object>
 <button type="button" class="btn" onclick="window.location.href='{{ repository.document.frontmatter.html_url }}/issues'">
 <span data-octicon="issue-opened"></span>Issues <span class="badge bg-secondary">{{ repository.document.frontmatter.open_issues_count }}</span>
 </button>
-</object>
 {% endif %}
 </div>
 <div class="card-footer">
