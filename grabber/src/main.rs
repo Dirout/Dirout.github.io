@@ -1,18 +1,17 @@
-use std::io::Write;
+use clap::clap_app;
+use octocrab::params;
+use serde::{Deserialize, Serialize};
+use std::env;
+use std::fs;
 use std::fs::File;
 use std::io::BufWriter;
-use clap::clap_app;
-use std::env;
-use serde::{Deserialize, Serialize};
-use std::fs;
+use std::io::Write;
 use std::path::Path;
-use octocrab::params;
 
 const VERSION: Option<&'static str> = option_env!("CARGO_PKG_VERSION");
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
-struct Repository
-{
+struct Repository {
     archived: bool,
     forked: bool,
     name: String,
@@ -33,13 +32,16 @@ async fn main() {
         (version: VERSION.unwrap())
         (author: "Emil Sayahi <limesayahi@gmail.com>")
         (@arg INPUT: "The working directory of the grabber")
-    ).get_matches();
+    )
+    .get_matches();
     env::set_current_dir(matches.value_of("INPUT").unwrap()).unwrap();
     let octocrab;
-    match fs::read_to_string("./token.txt")
-    {
+    match fs::read_to_string("./token.txt") {
         Ok(_) => {
-            octocrab = octocrab::OctocrabBuilder::new().personal_token(fs::read_to_string("./token.txt").unwrap()).build().unwrap();
+            octocrab = octocrab::OctocrabBuilder::new()
+                .personal_token(fs::read_to_string("./token.txt").unwrap())
+                .build()
+                .unwrap();
         }
         Err(_) => {
             octocrab = octocrab::OctocrabBuilder::new().build().unwrap();
@@ -47,15 +49,20 @@ async fn main() {
     }
 
     let organizations = ["MadeByEmil"];
-    let mut repositories = vec!();
+    let mut repositories = vec![];
     for organization in &organizations {
         let organization = octocrab.orgs(organization.to_owned());
-        let listing = organization.list_repos().sort(params::repos::Sort::Pushed).per_page(100).send().await.unwrap();
+        let listing = organization
+            .list_repos()
+            .sort(params::repos::Sort::Pushed)
+            .per_page(100)
+            .send()
+            .await
+            .unwrap();
         for repository in listing.items {
             let license_id;
             let license_name;
-            match &repository.license
-            {
+            match &repository.license {
                 Some(license) => {
                     license_id = license.clone().spdx_id.to_lowercase();
                     license_name = license.clone().name;
@@ -65,21 +72,19 @@ async fn main() {
                     license_name = String::new();
                 }
             }
-            
+
             let description;
-            match repository.description
-            {
-            	Some(gh_description) => {
-            		description = gh_description;
-            	}
-            	None => {
-            		description = String::new();
-            	}
+            match repository.description {
+                Some(gh_description) => {
+                    description = gh_description;
+                }
+                None => {
+                    description = String::new();
+                }
             }
 
             let open_issues_count;
-            match repository.has_issues.unwrap()
-            {
+            match repository.has_issues.unwrap() {
                 true => {
                     open_issues_count = repository.open_issues_count.unwrap();
                 }
@@ -105,11 +110,16 @@ async fn main() {
             repositories.push(structured_data);
         }
     }
-    
-    for i in 0..repositories.len()
-    {
+
+    for i in 0..repositories.len() {
         let file_contents = &serde_yaml::to_string(&repositories[i]).unwrap();
-        write_file(format!("./repos/{}.mokkf", i), format!("{}\ncollection:  \"repos\"\npermalink: \"{{{{ page.name }}}}.html\"\n---", file_contents))
+        write_file(
+            format!("./repos/{}.mokkf", i),
+            format!(
+                "{}\ncollection:  \"repos\"\npermalink: \"{{{{ page.name }}}}.html\"\n---",
+                file_contents
+            ),
+        )
     }
 }
 
