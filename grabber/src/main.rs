@@ -103,7 +103,7 @@ async fn main() {
                 html_url: repository.html_url.to_string(),
                 license_id: license_id.to_owned(),
                 license_name: license_name.to_owned(),
-                open_issues_count: open_issues_count,
+                open_issues_count,
                 pushed_at: repository.pushed_at.unwrap().to_rfc3339(),
                 stargazers_count: repository.stargazers_count.unwrap(),
             };
