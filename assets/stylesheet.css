@@ -47,6 +47,20 @@ a:hover {
 	margin: 0.5rem;
 }
 
+.btn {
+	padding-bottom: 0.333rem;
+}
+
+.btn > span {
+	padding-bottom: 0.25rem;
+}
+
+.repo-buttons {
+	margin-top: 0.5rem;
+	padding-top: 0.1rem;
+	margin-bottom: 0.4rem
+}
+
 body {
     font:16px/1 "Inter", Helvetica, Arial, sans-serif;
     color: #666;
