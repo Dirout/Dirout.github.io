@@ -57,6 +57,7 @@ jobs:
           cp -ar ./mokk/output/* ./gh-pages
           cp -ar ./mokk/assets ./gh-pages
           cp -ar ./mokk/branding/vector ./gh-pages/assets/icons
+          cp -ar ./mokk/keybase.txt ./gh-pages
           if [ -f "./gh-pages/postbuild.sh" ]; then
               chmod +x ./gh-pages/postbuild.sh && ./gh-pages/postbuild.sh
           fi
