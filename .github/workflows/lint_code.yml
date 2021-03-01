@@ -28,7 +28,7 @@ jobs:
           args: --manifest-path grabber/Cargo.toml --fix -Z unstable-options
       - name: Commit changes to code, if any
         run: |
-          git config --global user.name 'Dokkoo'
+          git config --global user.name 'Dirout'
           git config --global user.email 'MadeByEmil@users.noreply.github.com'
           git diff --quiet && git diff --staged --quiet || git commit -am "Automatically approved suggested code corrections by linter"
           git push
