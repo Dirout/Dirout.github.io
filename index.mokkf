@@ -3,9 +3,10 @@ layout: main
 title: "Dirout"
 permalink: "index.html"
 ---
-<div class="card-group">
+<div class="container">
+<div class="row">
 {% for repository in collections["repos"] %}
-<div class="card">
+<div class="card col">
 <a href="{{ repository.document.frontmatter.html_url }}">
 {% if repository.document.frontmatter.archived %}
 <div class="card-header"><span data-octicon="archive"></span> Archived</div>
@@ -17,22 +18,33 @@ permalink: "index.html"
 <h5 class="card-title"><span data-octicon="repo"></span> {{ repository.document.frontmatter.name }}</h5>
 {% endif %}
 <p class="card-text">{{ repository.document.frontmatter.description }}</p>
-<button type="button" class="btn btn-primary" onclick="window.location.href='{{ repository.document.frontmatter.html_url }}/stargazers'">
+<button type="button" class="btn" onclick="window.location.href='{{ repository.document.frontmatter.html_url }}/stargazers'">
 <span data-octicon="star"></span>Stars <span class="badge bg-secondary">{{ repository.document.frontmatter.stargazers_count }}</span>
 </button>
 {% if repository.document.frontmatter.has_issues %}
-<button type="button" class="btn btn-primary" onclick="window.location.href='{{ repository.document.frontmatter.html_url }}/issues'">
+<button type="button" class="btn" onclick="window.location.href='{{ repository.document.frontmatter.html_url }}/issues'">
 <span data-octicon="issue-opened"></span>Issues <span class="badge bg-secondary">{{ repository.document.frontmatter.open_issues_count }}</span>
 </button>
 {% endif %}
 <div class="card-footer">
 {% if repository.document.frontmatter.has_license %}
-<p class="card-text"><small class="text-muted"><span data-octicon="law"></span><a href="https://choosealicense.com/licenses/{{ repository.document.frontmatter.license_id }}"> {{ repository.document.frontmatter.license_name }}</a></small></p>
+<p class="card-text">
+<small class="text-muted">
+<span data-octicon="law"></span>
+<a href="https://choosealicense.com/licenses/{{ repository.document.frontmatter.license_id }}"> {{ repository.document.frontmatter.license_name }}</a>
+</small>
+</p>
 {% endif %}
-<p class="card-text"><small class="text-muted"><span data-octicon="clock"></span> Last updated at {{ repository.document.frontmatter.pushed_at }}</small></p>
+<p class="card-text">
+<small class="text-muted">
+<span data-octicon="clock"></span> Last updated at {{ repository.document.frontmatter.pushed_at }}
+</small>
+</p>
+</a>
+</div>
 </div>
 </div>
 </a>
-</div>
 {% endfor %}
+</div>
 </div>
