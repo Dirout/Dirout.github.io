@@ -1,4 +1,4 @@
-name: Publish to GitHub Pages (Scheduled)
+name: Publish to GitHub Pages (scheduled)
 
 on:
   schedule:
