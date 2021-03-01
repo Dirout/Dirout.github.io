@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
