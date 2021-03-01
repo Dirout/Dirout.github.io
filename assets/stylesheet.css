@@ -1,12 +1,28 @@
 a {
-    cursor: default;
-    text-decoration: none;
+	text-decoration: none;
     color: rgb(255,59,48);
 }
 
 a:hover {
-    cursor: default;
     text-decoration: none;
+    color: #d70015;
+}
+
+* {
+	cursor: default !important;
+}
+
+*:hover {
+    cursor: default !important;
+}
+
+.btn:hover {
+    cursor: default;
+}
+
+.container {
+	margin-left: 1rem;
+	margin-top: 1rem;
 }
 
 .card-body > * {
@@ -25,12 +41,10 @@ a:hover {
 	max-width: fit-content;
 }
 
-.card-group > * {
-	min-width: fit-content;
-}
-
 .card {
 	min-width: auto;
+	border-radius: 1rem;
+	margin: 0.5rem;
 }
 
 body {
@@ -41,6 +55,7 @@ body {
     width: 11in;
     height: 8.5in;
     margin: auto;
+    background: #ff3a30;
 }
 
 h1 {
