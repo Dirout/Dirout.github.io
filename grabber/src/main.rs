@@ -48,7 +48,7 @@ async fn main() {
         }
     }
 
-    let organizations = ["MadeByEmil"];
+    let organizations = ["Dirout"];
     let mut repositories = vec![];
     for organization in &organizations {
         let organization = octocrab.orgs(organization.to_owned());
