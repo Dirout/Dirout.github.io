@@ -33,6 +33,7 @@ a:hover {
 .card-footer {
     margin-top: 1rem;
     min-width: max-content;
+	width: max-content;
     background: #fff;
 }
 
