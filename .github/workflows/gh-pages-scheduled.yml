@@ -2,7 +2,7 @@ name: Publish to GitHub Pages (scheduled)
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 0 * * *'
 
 jobs:
   build:
