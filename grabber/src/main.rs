@@ -23,6 +23,7 @@ struct Repository {
     license_name: String,
     open_issues_count: u32,
     pushed_at: String,
+    date: String,
     stargazers_count: u32,
 }
 
@@ -105,6 +106,7 @@ async fn main() {
                 license_name: license_name.to_owned(),
                 open_issues_count,
                 pushed_at: repository.pushed_at.unwrap().to_rfc3339(),
+                date: repository.pushed_at.unwrap().to_rfc3339(),
                 stargazers_count: repository.stargazers_count.unwrap(),
             };
             repositories.push(structured_data);
