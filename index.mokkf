@@ -7,40 +7,40 @@ permalink: "index.html"
 <div class="row">
 {% for repository in collections["repos"] %}
 <div class="card col">
-<a href="{{ repository.document.frontmatter.html_url }}">
-{% if repository.document.frontmatter.archived %}
+<a href="{{ repository.data.html_url }}">
+{% if repository.data.archived %}
 <div class="card-header"><span data-octicon="archive"></span> Archived</div>
 {% endif %}
 <div class="card-body">
-{% if repository.document.frontmatter.fork %}
-<h5 class="card-title"><span data-octicon="repo-forked"></span> {{ repository.document.frontmatter.name }}</h5>
+{% if repository.data.fork %}
+<h5 class="card-title"><span data-octicon="repo-forked"></span> {{ repository.data.name }}</h5>
 {% else %}
-<h5 class="card-title"><span data-octicon="repo"></span> {{ repository.document.frontmatter.name }}</h5>
+<h5 class="card-title"><span data-octicon="repo"></span> {{ repository.data.name }}</h5>
 {% endif %}
-<p class="card-text">{{ repository.document.frontmatter.description }}</p>
+<p class="card-text">{{ repository.data.description }}</p>
 </a>
 <div class="repo-buttons">
-<button type="button" class="btn" onclick="window.location.href='{{ repository.document.frontmatter.html_url }}/stargazers'">
-<span data-octicon="star"></span>Stars <span class="badge bg-secondary">{{ repository.document.frontmatter.stargazers_count }}</span>
+<button type="button" class="btn" onclick="window.location.href='{{ repository.data.html_url }}/stargazers'">
+<span data-octicon="star"></span>Stars <span class="badge bg-secondary">{{ repository.data.stargazers_count }}</span>
 </button>
-{% if repository.document.frontmatter.has_issues %}
-<button type="button" class="btn" onclick="window.location.href='{{ repository.document.frontmatter.html_url }}/issues'">
-<span data-octicon="issue-opened"></span>Issues <span class="badge bg-secondary">{{ repository.document.frontmatter.open_issues_count }}</span>
+{% if repository.data.has_issues %}
+<button type="button" class="btn" onclick="window.location.href='{{ repository.data.html_url }}/issues'">
+<span data-octicon="issue-opened"></span>Issues <span class="badge bg-secondary">{{ repository.data.open_issues_count }}</span>
 </button>
 {% endif %}
 </div>
 <div class="card-footer">
-{% if repository.document.frontmatter.has_license %}
+{% if repository.data.has_license %}
 <p class="card-text">
 <small class="text-muted">
 <span data-octicon="law"></span>
-<a href="https://choosealicense.com/licenses/{{ repository.document.frontmatter.license_id }}"> {{ repository.document.frontmatter.license_name }}</a>
+<a href="https://choosealicense.com/licenses/{{ repository.data.license_id }}"> {{ repository.data.license_name }}</a>
 </small>
 </p>
 {% endif %}
 <p class="card-text">
 <small class="text-muted">
-<span data-octicon="clock"></span> Last updated at {{ repository.document.frontmatter.pushed_at }}
+<span data-octicon="clock"></span> Last updated at {{ repository.data.pushed_at }}
 </small>
 </p>
 </div>

@@ -10,7 +10,7 @@
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/octicons-html@1/dist/octicons-html.css">
     <link rel="stylesheet" href="{{ global.base }}/assets/stylesheet.css">
     {! snippet favicon.html !}
-    <title>{{ page.document.frontmatter.title }}</title>
+    <title>{{ page.data.title }}</title>
   </head>
   <body>
 {! snippet header.html !}
