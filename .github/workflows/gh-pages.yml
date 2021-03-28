@@ -46,7 +46,6 @@ jobs:
     - name: Build
       run: |
           sudo apt-get -qq install tree > /dev/null
-          printf "Files to build:\n" && tree ./mokk
           find ./gh-pages -mindepth 1 ! -regex '^./gh-pages/.git\(/.*\)?' -delete
           cd ./mokk
           printf "\nBuilding … \n" && dokkoo build .
