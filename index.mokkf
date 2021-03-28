@@ -15,9 +15,9 @@ markdown: false
             {% endif %}
                 <div class="card-body">
                     {% if repository.data.fork %}
-                    <h5 class="card-title"><span data-octicon="repo-forked"></span> {{ repository.data.name }}</h5>
+                    <h5 class="card-title"><span data-octicon="repo-forked"></span> {{ repository.data.title }}</h5>
                     {% else %}
-                    <h5 class="card-title"><span data-octicon="repo"></span> {{ repository.data.name }}</h5>
+                    <h5 class="card-title"><span data-octicon="repo"></span> {{ repository.data.title }}</h5>
                     {% endif %}
                     <p class="card-text">{{ repository.data.description }}</p>
                     </a>
