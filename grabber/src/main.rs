@@ -14,7 +14,7 @@ const VERSION: Option<&'static str> = option_env!("CARGO_PKG_VERSION");
 struct Repository {
     archived: bool,
     forked: bool,
-    name: String,
+    title: String,
     description: String,
     has_issues: bool,
     has_license: bool,
@@ -97,7 +97,7 @@ async fn main() {
             let structured_data = Repository {
                 archived: repository.archived.unwrap(),
                 forked: repository.fork,
-                name: repository.name,
+                title: repository.name,
                 description: description.to_owned(),
                 has_issues: repository.has_issues.unwrap(),
                 has_license: repository.license.is_some(),
