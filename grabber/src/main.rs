@@ -118,7 +118,7 @@ async fn main() {
         write_file(
             format!("./repos/{}.mokkf", i),
             format!(
-                "{}\ncollection:  \"repos\"\npermalink: \"{{{{ page.name }}}}.html\"\n---",
+                "{}\ncollection:  \"repos\"\npermalink: date\n---",
                 file_contents
             ),
         )
