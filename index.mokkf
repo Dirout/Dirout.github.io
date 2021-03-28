@@ -2,6 +2,7 @@
 layout: main
 title: "Dirout"
 permalink: "index.html"
+markdown: false
 ---
 <div class="container">
     <div class="row">
