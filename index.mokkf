@@ -6,7 +6,8 @@ markdown: false
 ---
 <div class="container">
     <div class="row">
-        {% for repository in collections["repos"] %}
+        {% assign repos_by_date = collections["repos"] | sort: "url" %}
+        {% for repository in repos_by_date %}
         <div class="card col">
             <a href="{{ repository.data.html_url }}">
             {% if repository.data.archived %}
