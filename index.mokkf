@@ -7,12 +7,12 @@ markdown: false
 <div class="container">
     <div class="row">
         {% assign urls = '' | split: '' %}
-        {% assign repo_date_rfc_3339 = collections["repos"] | map: 'date' | sort: "rfc_3339" %}
-        {% for repo_date in repo_date_rfc_3339 reversed %}
-          {% for repo in collections["repos"] %}
-            {% if repo.date.rfc_3339 == repo_date.rfc_3339 %}
-              {% unless urls contains repo.url %}
-                {% assign urls = urls | push: repo.url %}
+        {% assign repository_date_rfc_3339 = collections["repos"] | map: 'date' | sort: "rfc_3339" %}
+        {% for repository_date in repository_date_rfc_3339 reversed %}
+          {% for repository in collections["repos"] %}
+            {% if repository.date.rfc_3339 == repository_date.rfc_3339 %}
+              {% unless urls contains repository.url %}
+                {% assign urls = urls | push: repository.url %}
                 <div class="card col">
                     <a href="{{ repository.data.html_url }}">
                     {% if repository.data.archived %}
