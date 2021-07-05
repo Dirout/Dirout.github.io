@@ -9,7 +9,7 @@ edition = "2018"
 [dependencies]
 chrono = { version = "0.4.19", features = ["unstable-locales"] }
 clap = { version = "3.0.0-beta.2", features = ["yaml", "wrap_help", "suggestions", "color"] }
-octocrab = "0.8.11"
+octocrab = "0.10.1"
 serde = "1.0.123"
 serde_yaml = "0.8.15"
 tokio = { version = "1.1.1", features = ["macros", "rt-multi-thread"] }
