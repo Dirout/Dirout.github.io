@@ -47,7 +47,7 @@ markdown: false
                                 {% endif %}
                                 <p class="card-text">
                                 <small class="text-muted">
-                                <span data-octicon="clock"></span> Last updated at {{ repository.date.rfc_2822 }}
+                                <span data-octicon="clock"></span> Last updated {{ repository.date.rfc_2822 }}
                                 </small>
                                 </p>
                             </div>
