@@ -23,6 +23,7 @@ a:hover {
 .container {
 	margin-left: 1rem;
 	margin-top: 1rem;
+	display: ruby;
 }
 
 .card-body > * {
