@@ -17,11 +17,11 @@ jobs:
         sudo apt-get -qq install ./dokkoo_${version}_amd64.deb > /dev/null
         printf "Installed Dokkoo v${version}"
     - name: Checkout Mokk
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
           path: ./mokk
     - name: Checkout GitHub Pages environment
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
           ref: gh-pages
           path: ./gh-pages
