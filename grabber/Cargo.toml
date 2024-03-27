@@ -7,7 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-chrono = { version = "0.4.19", features = ["unstable-locales"] }
+chrono = { version = "0.4.37", features = ["unstable-locales"] }
 clap = { version = "3.0.0-beta.2", features = ["yaml", "wrap_help", "suggestions", "color"] }
 octocrab = "0.11.0"
 serde = "1.0.127"
